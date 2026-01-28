@@ -1,17 +1,15 @@
 <script lang="ts">
-    import '../app.css';
-    let { children } = $props();
+	import "../app.css";
+	let { children } = $props();
 </script>
 
-<main>
-    {@render children()}
-</main>
+<div class="app-shell">
+	{@render children()}
+</div>
 
 <style>
-    main {
-        display: flex;
-        min-height: 100vh;
-        align-items: center;
-        justify-content: center;
-    }
+	.app-shell {
+		min-height: 100vh;
+		background: var(--color-background);
+	}
 </style>
