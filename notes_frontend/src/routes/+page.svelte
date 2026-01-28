@@ -7,7 +7,11 @@
 		updatedAt: string;
 	};
 
-	const API_BASE = "http://localhost:3001";
+	// Backend base URL.
+	// IMPORTANT: `localhost` only works for local dev; in hosted/preview environments it breaks.
+	// Configure `PUBLIC_API_BASE_URL` at build/runtime to point to the deployed backend (e.g. https://<host>:3001).
+	const API_BASE =
+		(import.meta as any).env?.PUBLIC_API_BASE_URL?.toString()?.replace(/\/$/, "") ?? "http://localhost:3001";
 
 	let notes: Note[] = [];
 	let loading = true;
@@ -148,7 +152,7 @@
 
 		<div class="actions">
 			<button class="btn btn-primary" on:click={startCreate}>New note</button>
-			<a class="btn btn-ghost" href="http://localhost:3001/docs" target="_blank" rel="noreferrer">
+			<a class="btn btn-ghost" href={`${API_BASE}/docs`} target="_blank" rel="noreferrer">
 				API docs
 			</a>
 		</div>
